@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: polyforge-3d-showcase
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: Access-Control-Allow-Origin
+        value: "*"
